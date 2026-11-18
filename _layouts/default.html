@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include synthwave-head.html %}
+    {% include head-custom.html %}
+  </head>
+  {% assign sw_home = false %}{% if page.url == "/" or page.url == "/index.html" %}{% assign sw_home = true %}{% endif %}
+  <body class="{% if sw_home and site.synthwave.hide_home_title != false %}sw-home-hide-title{% endif %}">
+    <div class="container-lg px-3 my-5 markdown-body">
+      <header class="sw-brand">
+        <a href="{{ "/" | relative_url }}">
+          <img src="{{ "/assets/images/unicorn-knight-256.png" | relative_url }}" alt="" width="48" height="48">
+          <span>{{ site.title | default: site.github.repository_name }}</span>
+        </a>
+      </header>
+
+      <main class="sw-content">
+{{ content }}
+      </main>
+
+      {% if site.github.private != true and site.github.license %}
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. {% github_edit_link "Improve this page" %}.
+      </div>
+      {% endif %}
+
+      <footer class="sw-signoff" aria-hidden="true">
+        <span>=^..^=</span>
+        <img src="{{ "/assets/images/unicorn-knight-64.png" | relative_url }}" alt="" width="28" height="28">
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!-- synthwave-theme: fonts, favicon, and Mermaid diagrams -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap">
+
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/unicorn-knight-32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="64x64" href="{{ '/assets/images/unicorn-knight-64.png' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/images/unicorn-knight-180.png' | relative_url }}">
+<meta name="theme-color" content="#140a2e">
+
+<script type="module">
+  // Render ```mermaid blocks as diagrams (github.com does this itself; Pages doesn't).
+  const blocks = document.querySelectorAll("pre > code.language-mermaid");
+  if (blocks.length) {
+    const { default: mermaid } = await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs");
+    blocks.forEach((code) => {
+      const diagram = document.createElement("div");
+      diagram.className = "mermaid";
+      diagram.textContent = code.textContent;
+      code.parentElement.replaceWith(diagram);
+    });
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "base",
+      themeVariables: {
+        darkMode: true, background: "#1c1140", fontFamily: "system-ui, sans-serif",
+        primaryColor: "#22164d", primaryTextColor: "#ece6ff", primaryBorderColor: "#ff2e88",
+        lineColor: "#00e5ff", secondaryColor: "#2a1b5c", tertiaryColor: "#1c1140",
+        edgeLabelBackground: "#140a2e", clusterBkg: "#1c1140",
+        actorBkg: "#22164d", actorBorder: "#ff2e88", actorTextColor: "#ece6ff", actorLineColor: "#3d2b78",
+        signalColor: "#00e5ff", signalTextColor: "#ece6ff", labelBoxBkgColor: "#22164d", labelTextColor: "#ece6ff",
+        noteBkgColor: "#2a1b5c", noteTextColor: "#ece6ff", noteBorderColor: "#9b5cff",
+        activationBkgColor: "#2a1b5c", sequenceNumberColor: "#140a2e"
+      }
+    });
+    await mermaid.run({ querySelector: ".mermaid" });
+  }
+</script>

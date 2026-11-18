@@ -1,0 +1,179 @@
+// synthwave-theme: neon-accent layer on top of Primer.
+
+:root {
+  --sw-bg: #140a2e;
+  --sw-bg-glow: #2a0f4f;
+  --sw-panel: #1c1140;
+  --sw-panel-alt: #22164d;
+  --sw-border: #3d2b78;
+  --sw-text: #ece6ff;
+  --sw-muted: #b9acdf;
+  --sw-pink: #ff2e88;
+  --sw-cyan: #00e5ff;
+  --sw-orange: #ff9a3c;
+  --sw-violet: #9b5cff;
+}
+
+html { background: var(--sw-bg); }
+
+body {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, var(--sw-bg-glow) 0%, transparent 70%),
+    var(--sw-bg);
+  background-attachment: fixed;
+  color: var(--sw-text);
+}
+
+.markdown-body {
+  color: var(--sw-text);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+// Brand bar: logo + site title in a sunset gradient
+.sw-brand {
+  margin: 0 0 1.6em;
+  padding-bottom: 0.7em;
+  border-bottom: 1px solid var(--sw-border);
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    border-bottom: none;
+    text-decoration: none;
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 0 8px rgba(255, 46, 136, 0.45));
+  }
+
+  span {
+    font-family: "Orbitron", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.3rem, 5vw, 1.9rem);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    background: linear-gradient(90deg, var(--sw-orange) 0%, var(--sw-pink) 50%, var(--sw-violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 46, 136, 0.35));
+  }
+}
+
+// Home page: a README usually repeats the site title as its first heading
+.sw-home-hide-title .sw-content > h1:first-child { display: none; }
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: var(--sw-cyan);
+  border-bottom-color: var(--sw-border);
+}
+
+.markdown-body h2 { text-shadow: 0 0 14px rgba(0, 229, 255, 0.25); }
+
+.markdown-body strong { color: #fff; }
+
+// Primer paints images white; transparent images should show the dark page
+.markdown-body img { background-color: transparent; }
+
+// Links
+.markdown-body a {
+  color: var(--sw-pink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 46, 136, 0.35);
+
+  &:hover {
+    color: var(--sw-cyan);
+    border-bottom-color: var(--sw-cyan);
+    text-decoration: none;
+  }
+}
+.markdown-body a.anchorjs-link,
+.markdown-body a:has(> img) { border-bottom: none; }
+
+// Code
+.markdown-body code,
+.markdown-body tt {
+  background: var(--sw-panel-alt);
+  color: #ffc4e1;
+  border-radius: 4px;
+}
+.markdown-body pre,
+.markdown-body .highlight pre {
+  background: #0d0620;
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+  color: var(--sw-text);
+}
+.markdown-body pre code { background: transparent; color: inherit; }
+
+// Tables scroll inside their own box
+.markdown-body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+
+  th { background: var(--sw-panel-alt); color: var(--sw-cyan); }
+  th, td { border-color: var(--sw-border); }
+  tr { background: var(--sw-panel); border-top-color: var(--sw-border); }
+  tr:nth-child(2n) { background: #180e38; }
+}
+
+// Quotes and rules
+.markdown-body blockquote {
+  color: var(--sw-muted);
+  border-left: 3px solid var(--sw-pink);
+  background: rgba(255, 46, 136, 0.06);
+  padding: 0.6em 1em;
+  border-radius: 0 6px 6px 0;
+}
+.markdown-body hr {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--sw-pink), var(--sw-cyan), transparent);
+}
+
+// Diagrams sit on a panel
+.markdown-body .mermaid {
+  background: var(--sw-panel);
+  border: 1px solid var(--sw-border);
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+// Primer's footer, recoloured
+.markdown-body .footer { border-top-color: var(--sw-border) !important; color: var(--sw-muted) !important; }
+
+// Sign-off: a cat and the unicorn knight
+.sw-signoff {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+  width: max-content;
+  margin: 3em auto 0;
+  padding-top: 1em;
+  border-top: 1px solid var(--sw-border);
+  color: var(--sw-muted);
+  letter-spacing: 0.15em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  img { width: 28px; height: 28px; }
+}
+
+::selection { background: var(--sw-pink); color: #fff; }
